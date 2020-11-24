@@ -1,0 +1,4 @@
+
+para compilar utilizar o comando a seguir:
+
+g++ main.cpp menu.h menu.cpp utils.h utils.cpp -o prog
