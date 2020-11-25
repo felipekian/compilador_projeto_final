@@ -1,0 +1,1 @@
+g++ main.cpp scannerFile.h scannerFile.cpp errors.h errors.cpp -o p
