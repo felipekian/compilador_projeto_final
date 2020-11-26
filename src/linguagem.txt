@@ -1,14 +1,5 @@
 // comentario.
-
-
-a = b + c;
-
-
-
-g = c * b;
-
-
-d = x - a;
-
-
-    d = x/a;
+agora := bb + caca;
+g := c * bc;
+d := x - agora;
+donde:=x/agora;

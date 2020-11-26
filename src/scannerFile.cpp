@@ -51,6 +51,7 @@ void read_file()
         fscanf(arq, "%c" , &c);
         fila_caracteres.push(c);
     }
+    fila_caracteres.push('\0');
 
     fclose(arq);
 }

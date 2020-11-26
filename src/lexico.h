@@ -17,8 +17,6 @@ void analisadorLexico();
 
 void setListTokens(char* word, int type);
 
-void setListTokens(char *word, int type);
-
 bool isSpace(char c);
 
 bool isBreakLine(char c);
