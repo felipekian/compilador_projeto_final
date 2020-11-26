@@ -1,1 +1,3 @@
-g++ main.cpp scannerFile.h scannerFile.cpp errors.h errors.cpp -o p
+Comando para compilação
+
+g++ main.cpp scannerFile.h scannerFile.cpp errors.h errors.cpp lexico.h lexico.cpp -o p

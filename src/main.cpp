@@ -2,6 +2,7 @@
 
 #include "scannerFile.h"
 #include "errors.h"
+#include "lexico.h"
 
 
 using namespace std;
@@ -14,7 +15,7 @@ int main(int argc, char const *argv[])
     if(argc > 2){error_not_extends_params(); exit(EXIT_FAILURE);}
     if(!setNameFile(argv[argc-1])) exit(EXIT_FAILURE);
 
-
+    analisadorLexico();
 
     return 0;
 }

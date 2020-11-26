@@ -7,10 +7,12 @@
 using namespace std;
 
 
-#define TAM_FILE_NAME 100 
-
 //nome do arquivo informado
-char fileName[TAM_FILE_NAME] = "";
+char fileName[100] = "";
+
+// armazena os caracteres lidos para serem analisados sob demanda
+queue <char> fila_caracteres;
+
 
 bool setNameFile(const char *file)
 {
@@ -26,5 +28,37 @@ bool setNameFile(const char *file)
         }
 
     strcpy(fileName, file);
+
+    read_file();
     return true;
 }
+
+
+
+void read_file()
+{
+    FILE *arq = fopen(fileName, "r");
+    char c;
+    
+    if(!arq){
+        error_file_not_found();
+        exit(EXIT_FAILURE);
+        
+    }
+
+    while (!feof(arq))
+    {
+        fscanf(arq, "%c" , &c);
+        fila_caracteres.push(c);
+    }
+
+    fclose(arq);
+}
+
+char getNextChar()
+{
+    char c = fila_caracteres.front();
+    fila_caracteres.pop();
+    return c;
+}
+
