@@ -1,0 +1,14 @@
+// comentário.
+
+
+a = b + c;
+
+
+
+g = c * b;
+
+
+d = x - a;
+
+
+    d = x/a;

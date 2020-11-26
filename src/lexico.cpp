@@ -8,8 +8,6 @@
  * 
  */
 
-
-
 #include <bits/stdc++.h>
 
 #include "errors.h"
@@ -29,8 +27,7 @@ void analisadorLexico()
     {
         c = getNextChar();
         strcat(currentWord, (&c));
-
-        cout << "LETRA: " << currentWord << endl;
+        cout << "PALAVRA CORRENTE: " << currentWord << endl;
 
         switch (state)
         {
