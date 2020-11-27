@@ -2,4 +2,5 @@
 agora := bb + caca;
 g := c * bc;
 d := x - agora;
-donde:=x/agora;
+donde := x / agora;
+()
