@@ -1,8 +1,14 @@
 /**
  * 
- * Analisador Léxico
+ * Analisador Lexico e Tabela de Tokens
+ * Autor: Felipe Derkian
+ * Data: 27/11/2020
  * 
  */
+
+
+
+#define INVALID_TOKEN -1
 
 
 #define TK_ATRIBUITE        0
@@ -12,7 +18,6 @@
 #define TK_FINAL_EXPRESSION 4
 
 
-#define INVALID_TOKEN -1
 
 void getNameTypeLexema(int identifyToken);
 

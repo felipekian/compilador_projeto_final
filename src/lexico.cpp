@@ -1,10 +1,8 @@
 /**
  * 
- * Faltam tratar os casos onde é final = -1;
- *  
- * setar na tabela de simbolos os valores reconhecidos
- * 
- * tratar a entrada do nextCaractere
+ * Analisador Lexico e Tabela de Tokens
+ * Autor: Felipe Derkian
+ * Data: 27/11/2020
  * 
  */
 

@@ -16,7 +16,6 @@ int main(int argc, char const *argv[])
     if(!setNameFile(argv[argc-1])) exit(EXIT_FAILURE);
 
     analisadorLexico();
-
     print_lexemas();
 
     return 0;
