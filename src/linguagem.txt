@@ -1,6 +1,4 @@
-// comentario.
 agora := bb + caca;
 g := c * bc;
-d := x - agora;
+d := x-agora;
 donde := x / agora;
-()

@@ -14,45 +14,238 @@
 #include "scannerFile.h"
 #include "lexico.h"
 
-#define INVALIDO 100
+using namespace std;
+
+class Tokens
+{
+public:
+    int type;
+    int line;
+    char lexema[200];
+
+    Tokens()
+    {
+        strcpy(this->lexema, "");
+        this->type = -1;
+        this->line = -1;
+    }
+
+    void setToken(char *lexema, int type, int line)
+    {
+        this->line = line;
+        this->type = type;
+        strcpy(this->lexema, lexema);
+    }
+
+    char *getLexema()
+    {
+        return this->lexema;
+    }
+
+    int getType()
+    {
+        return this->type;
+    }
+
+    int getLine()
+    {
+        return this->line;
+    }
+};
+
+vector<Tokens> tabela_simbolos;
 
 char c;
 char currentWord[200] = "";
-int line = 0;
+char spected[200] = "";
+int line = 1;
 int state = 0;
-
-using namespace std;
+bool _back = false;
 
 void analisadorLexico()
 {
 
-    while (c != '\0')
+    while (true)
     {
-        c = getNextChar();
-        strcpy(currentWord, (&c));
+        if (!_back)
+        {
+            c = getNextChar();
+
+            if (c == '\n')
+                line++;
+        }
+        else
+        {
+            _back = false;
+        }
+
+        if (eof_file(c))
+            break;
+
+        switch (state)
+        {
+        case 0:
+            // estado 0 não tem nada
+            clear_current();
+
+            if (isFinalExpression(c))
+            {
+                state = 1;
+                copy_current();
+            }
+            else if (isNumber(c))
+            {
+                state = 2;
+                copy_current();
+            }
+            else if (isChar(c))
+            {
+                state = 3;
+                copy_current();
+            }
+            else if (isOperator(c))
+            {
+                state = 4;
+                copy_current();
+            }
+            else if (isDubleDot(c))
+            {
+                state = 5;
+                copy_current();
+            }
+            else if (isSpace(c) || isBreakLine(c))
+            {
+                state = 0;
+                if (eof_file(c))
+                    break;
+            }
+            else
+            {
+                state = INVALID_TOKEN;
+            }
+            break;
+
+        case 1:
+            setListTokens(currentWord, TK_FINAL_EXPRESSION, line);
+            back();
+            break;
+
+        case 2:
+            if (isNumber(c))
+            {
+                state = 2;
+                copy_current();
+            }
+            else
+            {
+                setListTokens(currentWord, TK_NUMBER, line);
+                strcpy(spected, "numero");
+                back();
+            }
+            break;
+
+        case 3:
+            if (isNumber(c) || isChar(c))
+            {
+                state = 3;
+                copy_current();
+            }
+            else
+            {
+                setListTokens(currentWord, TK_ID, line);
+                strcpy(spected, "numero ou caractere");
+                back();
+            }
+            break;
+
+        case 4:
+            setListTokens(currentWord, TK_OPERATION, line);
+            back();
+            break;
+
+        case 5:
+            if (isIquals(c))
+            {
+                state = 6;
+                copy_current();
+            }
+            else
+            {
+                _back = true;
+                state = INVALID_TOKEN;
+                strcpy(spected, "=");
+            }
+            break;
+
+        case 6:
+            setListTokens(currentWord, TK_ATRIBUITE, line);
+            back();
+            break;
+
+        default:
+            error_letter_not_gramatical(c, currentWord, spected, line);
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    cout << "FIM ANALISE LEXICA" << endl;
+}
+
+void setListTokens(char word[], int type, int line)
+{
+    Tokens token;
+    token.setToken(word, type, line);
+    tabela_simbolos.push_back(token);
+}
+
+void print_lexemas()
+{
+    cout << "\n\n------------LEXEMAS-------------\n\n";
+
+    for (int i = 0; i < tabela_simbolos.size(); i++)
+    {
+        cout << "\n"
+             << i + 1 << ")" << endl;
+        cout << "LEXEMA: " << tabela_simbolos[i].getLexema() << endl;
+        cout << "TIPO: "; getNameTypeLexema(tabela_simbolos[i].getType());
+        cout << "LINHA: " << tabela_simbolos[i].getLine() << endl;
     }
 }
 
-void setListTokens(char *word, int type)
+void back()
 {
-    cout << "WORD: " << word << endl;
-    cout << "TYPE: " << type << endl;
-    cout << "LINE: " << line << endl;
-    cout << "STATE: " << state << endl;
-    cout << endl;
+    _back = true;
+    state = 0;
+    clear_current();
+}
+
+void copy_current()
+{
+    strcat(currentWord, (&c));
+}
+
+void clear_current()
+{
+    strcpy(currentWord, "");
+}
+
+bool eof_file(char c)
+{
+    return (c == '\0');
 }
 
 bool isSpace(char c)
 {
-    return (c == '\t' || c == '\r' || c == '\n' || c == ' ');
+    return (c == '\t' || c == ' ');
 }
 
 bool isBreakLine(char c)
 {
-    return (c == '\n');
+    return (c == '\n' || c == '\r');
+    line++;
 }
 
-bool isCaractere(char c)
+bool isChar(char c)
 {
     return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
@@ -65,11 +258,6 @@ bool isNumber(char c)
 bool isOperator(char c)
 {
     return (c == '+' || c == '-' || c == '*' || c == '/');
-}
-
-bool isBar(char c)
-{
-    return (c == '/');
 }
 
 bool isDot(char c)
@@ -90,4 +278,22 @@ bool isIquals(char c)
 bool isFinalExpression(char c)
 {
     return (c == ';');
+}
+
+void getNameTypeLexema(int identifyToken)
+{
+    if (identifyToken == TK_ATRIBUITE)
+        cout << "TK_ATRIBUITE\n";
+
+    else if (identifyToken == TK_NUMBER)
+        cout << "TK_NUMBER\n";
+
+    else if (identifyToken == TK_ID)
+        cout <<  "TK_ID\n";
+
+    else if (identifyToken == TK_OPERATION)
+        cout << "TK_OPERATION\n";
+
+    else if (identifyToken == TK_FINAL_EXPRESSION)
+        cout << "TK_FINAL_EXPRESSION\n";
 }

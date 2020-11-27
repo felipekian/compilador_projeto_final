@@ -29,10 +29,11 @@ void error_file_not_found()
          << endl;
 }
 
-void error_letter_not_gramatical(char c, char *currentWord, int line)
+void error_letter_not_gramatical(char c, char *currentWord, char *spected, int line)
 {
-    cout << "\nErro lexico: Caractere nao pertencente a gramatica: " << endl;
+    cout << "\nLEXEMA NAO RECONHECIDO: " << endl;
     cout << "Linha: " << line << endl;
-    cout << "Caractere: " << c << endl;
-    cout << "Palavra Invalida: " << currentWord << endl;
-}
+    cout << "Lexema corrente: " << currentWord << endl;
+    cout << "Esperado: " << spected << " | Recebido: " << c << endl;
+    cout << "Lexema Correto: " << currentWord << spected << endl;
+}   

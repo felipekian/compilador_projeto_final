@@ -17,5 +17,7 @@ int main(int argc, char const *argv[])
 
     analisadorLexico();
 
+    print_lexemas();
+
     return 0;
 }
