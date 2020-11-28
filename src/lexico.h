@@ -9,6 +9,7 @@
 #include <bits/stdc++.h>
 
 #define INVALID_TOKEN -1
+#define FINAL_LIST -1
 
 
 #define TK_ATRIBUITE        0

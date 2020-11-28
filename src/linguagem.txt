@@ -1,1 +1,3 @@
 aaa := caca + 9999 - ca;
+
+aaa := caca * 9999 + ca;

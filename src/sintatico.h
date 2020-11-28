@@ -24,7 +24,7 @@
  * Gramática G' LL(1)
  * 
  * 1) E  -> T' I T E' FE
- * 2) E' -> OP T E' | &
+ * 2) E' -> OP T E'
  * 3) T  -> id | numero
  * 4) OP -> + | - | * | /
  * 5) T' -> id
@@ -34,4 +34,17 @@
  */
 
 
+void E();
+
+void TL();
+
+void I();
+
+void T();
+
+void EL();
+
+void FE();
+
+void OP();
 

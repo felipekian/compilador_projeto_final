@@ -150,7 +150,8 @@ void analisadorLexico()
     }
 
     cout << "FIM ANALISE LEXICA" << endl;
-    setListTokens(currentWord, -1, -1);
+    strcpy(currentWord, "");
+    setListTokens(currentWord, FINAL_LIST, line);
 }
 
 void setListTokens(char word[], int type, int line)
@@ -167,7 +168,6 @@ Tokens getTokens()
     t = tabela_simbolos.front();
     tabela_simbolos.pop();
 
-    cout << ">>>  " << t.getLexema() << endl;
     return t;
 }
 
