@@ -3,6 +3,7 @@
 #include "scannerFile.h"
 #include "errors.h"
 #include "lexico.h"
+#include "sintatico.h"
 
 using namespace std;
 
@@ -22,19 +23,11 @@ int main(int argc, char const *argv[])
     if (!setNameFile(argv[argc - 1]))
         exit(EXIT_FAILURE);
 
+    // Função do analisador Lexico
     analisadorLexico();
 
-
-    cout << "Analise Sintatica" << endl;
-    while (true)
-    {
-        Tokens t = getLexemaSobDemanda();
-
-        if (t.type == -1)
-            break;
-
-        cout << t.getLexema() << "     " << t.getType() << endl;
-    }
+    // Analisador Sintático LL(1)
+    E();
 
     return 0;
 }

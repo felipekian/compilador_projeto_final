@@ -57,7 +57,7 @@ public:
 
 void getNameTypeLexema(int identifyToken);
 
-Tokens getLexemaSobDemanda();
+Tokens getTokens();
 
 void analisadorLexico();
 

@@ -160,7 +160,7 @@ void setListTokens(char word[], int type, int line)
     tabela_simbolos.push(token);
 }
 
-Tokens getLexemaSobDemanda()
+Tokens getTokens()
 {
     Tokens t;
 
@@ -168,8 +168,10 @@ Tokens getLexemaSobDemanda()
     {
         t = tabela_simbolos.front();
         tabela_simbolos.pop();
+    } else {
+        char c[] = "";
+        t.setToken(c,-1,-1);
     }
-
     return t;
 }
 

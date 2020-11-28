@@ -18,3 +18,8 @@ void error_file_not_found();
 
 // erro de caractere não pertencente a gramática
 void error_letter_not_gramatical(char c, char *currentWord, char *spected, int line);
+
+//erro de sintaxe
+void error_sintaxe(char *current, char spected[], int line);
+
+

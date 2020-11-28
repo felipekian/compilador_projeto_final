@@ -36,4 +36,12 @@ void error_letter_not_gramatical(char c, char *currentWord, char *spected, int l
     cout << "Lexema corrente: " << currentWord << endl;
     cout << "Esperado: " << spected << " | Recebido: " << c << endl;
     cout << "Lexema Correto: " << currentWord << spected << endl;
-}   
+}
+
+void error_sintaxe(char *current, char spected[], int line)
+{
+    cout << "\nERRO DE SINTAXE\n" << endl;
+    cout << "ERRO: " << current << endl;
+    cout << "ESPERADO" << spected << endl;
+    cout << "LINHA: " << line << endl << endl;
+}
