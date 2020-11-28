@@ -14,44 +14,8 @@
 
 using namespace std;
 
-class Tokens
-{
-public:
-    int type;
-    int line;
-    char lexema[200];
 
-    Tokens()
-    {
-        strcpy(this->lexema, "");
-        this->type = -1;
-        this->line = -1;
-    }
-
-    void setToken(char *lexema, int type, int line)
-    {
-        this->line = line;
-        this->type = type;
-        strcpy(this->lexema, lexema);
-    }
-
-    char *getLexema()
-    {
-        return this->lexema;
-    }
-
-    int getType()
-    {
-        return this->type;
-    }
-
-    int getLine()
-    {
-        return this->line;
-    }
-};
-
-vector<Tokens> tabela_simbolos;
+queue<Tokens> tabela_simbolos;
 
 char c;
 char currentWord[200] = "";
@@ -193,21 +157,20 @@ void setListTokens(char word[], int type, int line)
 {
     Tokens token;
     token.setToken(word, type, line);
-    tabela_simbolos.push_back(token);
+    tabela_simbolos.push(token);
 }
 
-void print_lexemas()
+Tokens getLexemaSobDemanda()
 {
-    cout << "\n\n------------LEXEMAS-------------\n\n";
+    Tokens t;
 
-    for (int i = 0; i < tabela_simbolos.size(); i++)
+    if (!tabela_simbolos.empty())
     {
-        cout << "\n"
-             << i + 1 << ")" << endl;
-        cout << "LEXEMA: " << tabela_simbolos[i].getLexema() << endl;
-        cout << "TIPO: "; getNameTypeLexema(tabela_simbolos[i].getType());
-        cout << "LINHA: " << tabela_simbolos[i].getLine() << endl;
+        t = tabela_simbolos.front();
+        tabela_simbolos.pop();
     }
+
+    return t;
 }
 
 void back()
@@ -287,7 +250,7 @@ void getNameTypeLexema(int identifyToken)
         cout << "TK_NUMBER\n";
 
     else if (identifyToken == TK_ID)
-        cout <<  "TK_ID\n";
+        cout << "TK_ID\n";
 
     else if (identifyToken == TK_OPERATION)
         cout << "TK_OPERATION\n";

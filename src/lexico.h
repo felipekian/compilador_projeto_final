@@ -6,7 +6,7 @@
  * 
  */
 
-
+#include <bits/stdc++.h>
 
 #define INVALID_TOKEN -1
 
@@ -18,10 +18,46 @@
 #define TK_FINAL_EXPRESSION 4
 
 
+class Tokens
+{
+public:
+    int type;
+    int line;
+    char lexema[200];
+
+    Tokens()
+    {
+        strcpy(this->lexema, "");
+        this->type = -1;
+        this->line = -1;
+    }
+
+    void setToken(char *lexema, int type, int line)
+    {
+        this->line = line;
+        this->type = type;
+        strcpy(this->lexema, lexema);
+    }
+
+    char *getLexema()
+    {
+        return this->lexema;
+    }
+
+    int getType()
+    {
+        return this->type;
+    }
+
+    int getLine()
+    {
+        return this->line;
+    }
+};
 
 void getNameTypeLexema(int identifyToken);
 
-void print_lexemas();
+Tokens getLexemaSobDemanda();
 
 void analisadorLexico();
 
