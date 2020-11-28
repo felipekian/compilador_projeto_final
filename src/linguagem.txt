@@ -1,4 +1,1 @@
-agora := bb + caca;
-g := c * bc;
-d := x-agora;
-donde := x / agora;
+aaa := caca + 9999 - ca;

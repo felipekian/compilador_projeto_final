@@ -14,7 +14,6 @@
 
 using namespace std;
 
-
 queue<Tokens> tabela_simbolos;
 
 char c;
@@ -151,6 +150,7 @@ void analisadorLexico()
     }
 
     cout << "FIM ANALISE LEXICA" << endl;
+    setListTokens(currentWord, -1, -1);
 }
 
 void setListTokens(char word[], int type, int line)
@@ -164,14 +164,10 @@ Tokens getTokens()
 {
     Tokens t;
 
-    if (!tabela_simbolos.empty())
-    {
-        t = tabela_simbolos.front();
-        tabela_simbolos.pop();
-    } else {
-        char c[] = "";
-        t.setToken(c,-1,-1);
-    }
+    t = tabela_simbolos.front();
+    tabela_simbolos.pop();
+
+    cout << ">>>  " << t.getLexema() << endl;
     return t;
 }
 

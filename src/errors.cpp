@@ -42,6 +42,6 @@ void error_sintaxe(char *current, char spected[], int line)
 {
     cout << "\nERRO DE SINTAXE\n" << endl;
     cout << "ERRO: " << current << endl;
-    cout << "ESPERADO" << spected << endl;
+    cout << "ESPERADO: " << spected << endl;
     cout << "LINHA: " << line << endl << endl;
 }

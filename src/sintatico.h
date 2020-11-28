@@ -35,18 +35,3 @@
 
 
 
-
-void E();       //Inicial
-
-void EL();  //recursao
-
-void T();       //termo | number
-
-void TL();  //termo
-
-void I();       //igual :=
-
-void FE();      //Final Expressão ;
-
-void OP();      //Operador + | - | * | /
-

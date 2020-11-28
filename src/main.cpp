@@ -27,7 +27,7 @@ int main(int argc, char const *argv[])
     analisadorLexico();
 
     // Analisador Sintático LL(1)
-    E();
+    
 
     return 0;
 }
