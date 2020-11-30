@@ -2,6 +2,7 @@
 
 #include "lexico.h"
 #include "sintatico.h"
+#include "semantica.h"
 #include "errors.h"
 
 using namespace std;
@@ -9,6 +10,11 @@ using namespace std;
 Tokens t;
 char msg[100];
 bool flag = false;
+
+void addTokenParaSemantica()
+{
+    setTokenParaAnaliseSemantica(t.getLexema(), t.getType(), t.getLine());
+}
 
 void valid(int v)
 {
@@ -43,6 +49,8 @@ void TL()
         error_sintaxe(t.getLexema(), msg, t.getLine());
         exit(EXIT_FAILURE);
     }
+
+    addTokenParaSemantica();
 }
 
 void I()
@@ -57,6 +65,8 @@ void I()
         error_sintaxe(t.getLexema(), msg, t.getLine());
         exit(EXIT_FAILURE);
     }
+
+    addTokenParaSemantica();
 }
 
 void T()
@@ -71,6 +81,8 @@ void T()
         error_sintaxe(t.getLexema(), msg, t.getLine());
         exit(EXIT_FAILURE);
     }
+
+    addTokenParaSemantica();
 }
 
 void EL()
@@ -102,6 +114,4 @@ void FE()
         flag = true;
         E();
     }
-
-    return;
 }
