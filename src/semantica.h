@@ -1,3 +1,11 @@
+/**
+ * 
+ * ANALISE SEMANTICA
+ * Autor: Felipe Derkian
+ * Data: 30/11/2020 
+ * 
+ */
+
 #include <bits/stdc++.h>
 
 using namespace std;
