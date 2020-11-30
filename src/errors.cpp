@@ -45,3 +45,12 @@ void error_sintaxe(char *current, char spected[], int line)
     cout << "ESPERADO: " << spected << endl;
     cout << "LINHA: " << line << endl << endl;
 }
+
+
+void error_semantica(char *erro, char* lexema, int line)
+{
+    cout << "\nERRO DE SEMANTICA" << endl;
+    cout << "ERRO: " << erro << endl;
+    cout << "VARIAVEL: " << lexema  << endl;
+    cout << "LINHA: " << line << endl << endl;
+}

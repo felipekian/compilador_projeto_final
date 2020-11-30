@@ -23,3 +23,5 @@ void error_letter_not_gramatical(char c, char *currentWord, char *spected, int l
 void error_sintaxe(char *current, char spected[], int line);
 
 
+// erro de semantica
+void error_semantica(char *erro, char* lexema, int line);
