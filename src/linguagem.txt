@@ -1,3 +1,5 @@
-aaa := caca + 9999 - ca;
+caca := 9999;
+
+ca := 0;
 
 aaa := caca * 9999 + ca;
