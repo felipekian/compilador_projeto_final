@@ -2,4 +2,4 @@ caca := 9999;
 
 ca := 0;
 
-aaa := caca * 9999 + ca;
+aaa := caca * 9999 + ca / 10 - 100;
