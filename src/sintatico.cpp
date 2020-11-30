@@ -103,6 +103,8 @@ void OP()
         error_sintaxe(t.getLexema(), msg, t.getLine());
         exit(EXIT_FAILURE);
     }
+
+    addTokenParaSemantica();
 }
 
 void FE()
@@ -112,6 +114,8 @@ void FE()
     {
         cout << "Reconhecido expressao" << endl;
         flag = true;
+        addTokenParaSemantica();
+        analiseSemantica();
         E();
     }
 }
