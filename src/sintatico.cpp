@@ -20,9 +20,11 @@ void valid(int v)
 {
     if (v == FINAL_LIST && flag)
     {
-        cout << "FIM ANALISE SINTATICA" << endl;
+        cout << "compilation successful" << endl;
         exit(EXIT_SUCCESS);
-    }else if(v == FINAL_LIST && !flag){
+    }
+    else if (v == FINAL_LIST && !flag)
+    {
         strcpy(msg, "Esperado ;");
         error_sintaxe(t.getLexema(), msg, t.getLine());
         exit(EXIT_FAILURE);
@@ -112,7 +114,7 @@ void FE()
 
     if (t.getType() == TK_FINAL_EXPRESSION)
     {
-        cout << "Reconhecido expressao" << endl;
+        // cout << "Reconhecido expressao" << endl;
         flag = true;
         addTokenParaSemantica();
         analiseSemantica();

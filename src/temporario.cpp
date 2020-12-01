@@ -19,7 +19,7 @@ char str_int[10];
 
 char *getNextTemp()
 {
-    strcpy(temp, "_T");
+    strcpy(temp, "$s");
     sprintf(str_int, "%d", contTemp);
     strcat(temp, str_int);
     contTemp++; 

@@ -73,3 +73,5 @@ void geracaoDeCodigo();
 void otimizationGenerationCode();
 
 void printCodifoOtimizado();
+
+void injetarCodigoParaArquiteturaMIPS();

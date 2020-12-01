@@ -17,7 +17,6 @@
 
 using namespace std;
 
-
 // vetor com a expressão a ser analisada
 vector<TokenSematica> tabela_semantica;
 vector<TokenSematica> poolVariaveis;
@@ -25,8 +24,6 @@ char msgSemantica[200];
 char p[5] = "";
 char nextTemp[10] = "";
 char nextTempBK[10] = "";
-
-
 
 // add os lexemas validados no vetor tabela semantica para ser analisado apos confirmação que a expressão é valida
 void setTokenParaAnaliseSemantica(char *lexema, int type, int line)
@@ -126,8 +123,6 @@ void sendTokensGenerationCode()
     }
 }
 
-
-
 // imprime uma mensagem de fim da analise semantica
 void fim_analise_semantica_msg()
 {
@@ -136,8 +131,7 @@ void fim_analise_semantica_msg()
     {
         cout << " " << tabela_semantica[i].getLexema();
     }
-    cout << endl
-         << endl;
+    cout << endl << endl;
 }
 
 // faz a analise semantica
@@ -157,12 +151,12 @@ bool analiseSemantica()
         }
     }
 
-
     // PARTE DO GERADOR DE CÓDIGO
     sendTokensGenerationCode();
-    geracaoDeCodigo();
     otimizationGenerationCode();
-    fim_analise_semantica_msg();
+    // printCodifoOtimizado();
+    injetarCodigoParaArquiteturaMIPS();
+    // fim_analise_semantica_msg();
     tabela_semantica.clear();
 
     return true;

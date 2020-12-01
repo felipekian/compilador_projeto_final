@@ -9,6 +9,7 @@
 #include <bits/stdc++.h>
 
 #include "geracaoCodigo.h"
+#include "codigoArquiteturaMIPS.h"
 
 using namespace std;
 
@@ -22,20 +23,16 @@ void setDataTokenGeracaoCodigo(char *resultado, char *operador, char *argumento1
     quadrupla.push_back(tokengeracao);
 }
 
-void geracaoDeCodigo()
+void insertRemove(int v)
 {
 
-    cout << "\nGERACAO DE CODIDO" << endl
-         << endl;
-
-    for (int i = 0; i < quadrupla.size(); i++)
+    for (int i = 0; i < removerLines.size(); i++)
     {
-        cout << quadrupla[i].getResultado() << endl;
-        cout << quadrupla[i].getOperador() << endl;
-        cout << quadrupla[i].getArgumento1() << endl;
-        cout << quadrupla[i].getArgumento2() << endl
-             << endl;
+        if (removerLines[i] == v)
+            return;
     }
+
+    removerLines.push_back(v);
 }
 
 /**
@@ -43,11 +40,9 @@ void geracaoDeCodigo()
  * da quadrupla tem que otimizar o código bruto geral em uma funçao para otimizar
  * 
  */
-
 void otimizationGenerationCode()
 {
-
-    cout << "Gerando otimização de codigo" << endl;
+    // cout << "Gerando otimização de codigo" << endl;
 
     for (int i = 0; i < quadrupla.size() - 1; i++)
     {
@@ -58,39 +53,60 @@ void otimizationGenerationCode()
                 if (strcmp(quadrupla[i].getResultado(), quadrupla[j].getArgumento1()) == 0)
                 {
                     quadrupla[j].setArq1(quadrupla[i].getArgumento1());
-                    removerLines.push_back(i);
-                    break;
+                    insertRemove(i);
                 }
                 else if (strcmp(quadrupla[i].getResultado(), quadrupla[j].getArgumento2()) == 0)
                 {
                     quadrupla[j].setArq2(quadrupla[i].getArgumento1());
-                    removerLines.push_back(i);
-                    break;
+                    insertRemove(i);
                 }
             }
         }
     }
-
-    // remover dados depois da otimização
-    for (int i = 0; i < removerLines.size(); i++)
-    {
-        quadrupla.erase(quadrupla.begin() + removerLines[i]);
-        
-        for (int j = i + 1; j < removerLines.size(); j++)
-        {
-            removerLines[j]--;
-        }
-    }
-
-    printCodifoOtimizado();
 }
 
 void printCodifoOtimizado()
 {
-    cout << "\nCODIGO OTIMIZADO\n"
-         << endl;
+    // cout << "\nCODIGO OTIMIZADO GERADO" << endl;
+
     for (int i = 0; i < quadrupla.size(); i++)
     {
-        cout << quadrupla[i].getResultado() << " " << quadrupla[i].getArgumento1() << " " << quadrupla[i].getOperador() << " " << quadrupla[i].getArgumento2() << endl;
+        bool imprimir = true;
+        for (int j = 0; j < removerLines.size(); j++)
+        {
+            if (removerLines[j] == i)
+            {
+                imprimir = false;
+                break;
+            }
+        }
+
+        if (imprimir == true)
+            cout << quadrupla[i].getResultado() << " " << quadrupla[i].getArgumento1() << " " << quadrupla[i].getOperador() << " " << quadrupla[i].getArgumento2() << endl;
     }
+}
+
+void injetarCodigoParaArquiteturaMIPS()
+{
+    // cout << "\nINJETANDO O CODIGO OTIMIZADO\n" << endl;
+
+    for (int i = 0; i < quadrupla.size(); i++)
+    {
+        bool injectCode = true;
+        for (int j = 0; j < removerLines.size(); j++)
+        {
+            if (removerLines[j] == i)
+            {
+                injectCode = false;
+                break;
+            }
+        }
+
+        if (injectCode == true)
+        {
+            setInstrucoesOtimizadasGeracaoCodigoMIPS(quadrupla[i].getResultado(), quadrupla[i].getOperador(), quadrupla[i].getArgumento1(), quadrupla[i].getArgumento2());
+        }
+    }
+
+    gerarArquivoFinalMIPS();
 }

@@ -149,7 +149,7 @@ void analisadorLexico()
         }
     }
 
-    cout << "FIM ANALISE LEXICA" << endl;
+    // cout << "FIM ANALISE LEXICA" << endl;
     strcpy(currentWord, "");
     setListTokens(currentWord, FINAL_LIST, line);
 }
