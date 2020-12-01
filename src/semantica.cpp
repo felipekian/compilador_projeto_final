@@ -82,8 +82,6 @@ void sendTokensGenerationCode()
 
     int tam_tabela = tabela_semantica.size();
 
-    cout << "TAM: " << tam_tabela << endl;
-
     // apenas atribuição de variável
     if (tam_tabela == 4)
     {
@@ -126,12 +124,9 @@ void sendTokensGenerationCode()
                                   nextTemp,
                                   p);
     }
-
-    // for (int i = tabela_semantica.size()-1; i >=0; i--)
-    // {
-    //     cout << " " << tabela_semantica[i].getLexema();
-    // }
 }
+
+
 
 // imprime uma mensagem de fim da analise semantica
 void fim_analise_semantica_msg()
@@ -166,6 +161,7 @@ bool analiseSemantica()
     // PARTE DO GERADOR DE CÓDIGO
     sendTokensGenerationCode();
     geracaoDeCodigo();
+    otimizationGenerationCode();
     fim_analise_semantica_msg();
     tabela_semantica.clear();
 
