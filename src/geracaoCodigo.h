@@ -54,8 +54,22 @@ public:
     {
         return this->arg2;
     }
+
+    void setArq1(char *arg)
+    {
+        strcpy(this->arg1, arg);
+    }
+
+    void setArq2(char *arg)
+    {
+        strcpy(this->arg2, arg);
+    }
 };
 
 void setDataTokenGeracaoCodigo(char *resultado, char *operador, char *argumento1, char *argumento2);
 
 void geracaoDeCodigo();
+
+void otimizationGenerationCode();
+
+void printCodifoOtimizado();
