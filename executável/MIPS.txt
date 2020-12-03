@@ -1,17 +1,17 @@
 ## FELIPE DERKIAN - COMPILER EXPRESSIONS - ARQUITETURA MIPS ##
 
 .TEXT
-sub $s3 10 100
-li $s4 0
-div $s4 $s3
-add $s5 9999 $s4
-li $s6 9999
-mult $s6 $s5
-addi $s12 $s6 0
-sub $s8 10 100
-li $s9 0
-div $s9 $s8
-add $s10 9999 $s9
-li $s11 9999
-mult $s11 $s10
-addi $s13 $s11 0
+sub $3, 10, 100
+li $4, 0
+div $4, $3
+add $5, 9999, $4
+li $6, 9999
+mult $6, $5
+addi $12, $6, 0
+sub $8, 10, 100
+li $9, 0
+div $9, $8
+add $10, 9999, $9
+li $11, 9999
+mult $11, $10
+addi $13, $11, 0

@@ -42,14 +42,14 @@ void gerarArquivoFinalMIPS()
         if (strcmp(tabela_arquitetura_MIPS.front().getOperador(), "mult") == 0 ||
             strcmp(tabela_arquitetura_MIPS.front().getOperador(), "div") == 0)
         {
-            fprintf(f, "%s %s %s\n", "li", tabela_arquitetura_MIPS.front().getResultado(), tabela_arquitetura_MIPS.front().getArg1());
+            fprintf(f, "%s %s, %s\n", "li", tabela_arquitetura_MIPS.front().getResultado(), tabela_arquitetura_MIPS.front().getArg1());
 
-            fprintf(f, "%s %s %s\n", tabela_arquitetura_MIPS.front().getOperador(), tabela_arquitetura_MIPS.front().getResultado(), tabela_arquitetura_MIPS.front().getArg2());
+            fprintf(f, "%s %s, %s\n", tabela_arquitetura_MIPS.front().getOperador(), tabela_arquitetura_MIPS.front().getResultado(), tabela_arquitetura_MIPS.front().getArg2());
         }
         else
         {
 
-            fprintf(f, "%s %s %s %s\n", tabela_arquitetura_MIPS.front().getOperador(),
+            fprintf(f, "%s %s, %s, %s\n", tabela_arquitetura_MIPS.front().getOperador(),
                     tabela_arquitetura_MIPS.front().getResultado(),
                     tabela_arquitetura_MIPS.front().getArg1(),
                     tabela_arquitetura_MIPS.front().getArg2());

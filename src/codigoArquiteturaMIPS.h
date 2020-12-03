@@ -70,7 +70,7 @@ private:
             strcpy(this->resp_variavel, "0");
         }
 
-        else if (v[0] == '$' && v[1] == 's')
+        else if (v[0] == '$')
         {
             strcpy(this->resp_variavel, v);
         }
